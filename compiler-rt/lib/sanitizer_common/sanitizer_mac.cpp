@@ -654,13 +654,13 @@ HandleSignalMode GetHandleSignalMode(int signum) {
 // Offset example:
 // XNU 17 -- macOS 10.13 -- iOS 11 -- tvOS 11 -- watchOS 4
 constexpr u16 GetOSMajorKernelOffset() {
-  if (TARGET_OS_OSX)
+  if (SANITIZER_OSX)
     return 4;
-  if (TARGET_OS_IOS || TARGET_OS_TV)
+  if (SANITIZER_IPHONEOS || SANITIZER_TVOS)
     return 6;
-  if (TARGET_OS_WATCH)
+  if (SANITIZER_WATCHOS)
     return 13;
-  if (TARGET_OS_VISION)
+  if (SANITIZER_VISIONOS)
     return 22;
 }
 
@@ -754,7 +754,7 @@ static void MapToMacos(u16 *major, u16 *minor) {
 #  endif
 
   // Below are mappings for pre-macOS-25-aligned releases
-  if (TARGET_OS_IOS || TARGET_OS_TV)
+  if (SANITIZER_IPHONEOS || SANITIZER_TVOS)
     *major += 2;
   else if (TARGET_OS_WATCH)
     *major += 9;
