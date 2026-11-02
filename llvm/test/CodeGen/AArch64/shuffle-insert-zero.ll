@@ -26,9 +26,7 @@ entry:
 define <4 x float> @testv4f32(<4 x float> noundef %vec) {
 ; SD-LABEL: testv4f32:
 ; SD:       // %bb.0: // %entry
-; SD-NEXT:    movi v1.2d, #0000000000000000
-; SD-NEXT:    mov v1.s[0], v0.s[0]
-; SD-NEXT:    mov v0.16b, v1.16b
+; SD-NEXT:    fmov s0, s0
 ; SD-NEXT:    ret
 ;
 ; GI-LABEL: testv4f32:
@@ -172,9 +170,7 @@ entry:
 define <4 x i32> @testv4i32(<4 x i32> noundef %vec) {
 ; SD-LABEL: testv4i32:
 ; SD:       // %bb.0: // %entry
-; SD-NEXT:    movi v1.2d, #0000000000000000
-; SD-NEXT:    mov v1.s[0], v0.s[0]
-; SD-NEXT:    mov v0.16b, v1.16b
+; SD-NEXT:    fmov s0, s0
 ; SD-NEXT:    ret
 ;
 ; GI-LABEL: testv4i32:
@@ -300,5 +296,3 @@ entry:
 ; CHECK: {{.*}}
 ; GI-FP16: {{.*}}
 ; GI-NOFP16: {{.*}}
-; SD-FP16: {{.*}}
-; SD-NOFP16: {{.*}}
